@@ -1,14 +1,23 @@
-const { response } = require("express"); //IntelliSense
+const { response, request } = require("express"); //IntelliSense
+const { userRegisterSchema } = require("../schemas/auth");
 
-const createUser = (req, res = response) => {
-  res.json({ resMsg: "User created" });
+const createUser = async (req, res = response) => {
+  try {
+    const value = await userRegisterSchema.validateAsync(req.body);
+    res.status(201).json({ resMsg: "User created", ...value });
+  } catch (e) {
+    res.status(400).json({
+      message: e.message,
+    });
+  }
 };
 
-const loginUser = (req, res) => {
-  res.json({ resMsg: "User Logged in" });
+const loginUser = (req, res = response) => {
+  const { email, password } = req.body;
+  res.json({ resMsg: "User Logged in", email, password });
 };
 
-const renewToken = (req, res) => {
+const renewToken = (req, res = response) => {
   res.json({ resMsg: "Token renew" });
 };
 
