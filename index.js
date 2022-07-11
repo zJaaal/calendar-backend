@@ -4,10 +4,14 @@ require("dotenv").config();
 //Create express server
 const app = express();
 
-//Routes
-app.use("/api/auth", require("./routes/auth"));
 //Public folder
 app.use(express.static("public")); //This a middleware
+
+//reading and parsing
+app.use(express.json()); //This middleware will read the body in json format
+
+//Routes
+app.use("/api/auth", require("./routes/auth"));
 
 //Listen to request
 app.listen(process.env.PORT, () =>
