@@ -1,17 +1,15 @@
 const express = require("express");
+require("dotenv").config();
 
 //Create express server
-
 const app = express();
 
 //Routes
-
-app.get("/", (req, res) => {
-  res.json({
-    hello: "Why are you requesting, theres nothing here",
-  });
-});
+app.use("/api/auth", require("./routes/auth"));
+//Public folder
+app.use(express.static("public")); //This a middleware
 
 //Listen to request
-
-app.listen(4000, () => console.log("Server running on port: 4000"));
+app.listen(process.env.PORT, () =>
+  console.log(`Server running on port: ${process.env.PORT}`)
+);
