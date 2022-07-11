@@ -5,6 +5,19 @@ const userRegisterSchema = joi.object({
   email: joi.string().email().required(),
   password: joi
     .string()
+    .min(8)
+    .pattern(
+      new RegExp(
+        `^(?=.*[A-Za-z])(?=.*\\d)(?=.*[@$!%*#?&])[A-Za-z\\d@$!%*#?&]{8,}$`
+      )
+    ),
+});
+
+const userLoginSchema = joi.object({
+  email: joi.string().email().required(),
+  password: joi
+    .string()
+    .min(8)
     .pattern(
       new RegExp(
         `^(?=.*[A-Za-z])(?=.*\\d)(?=.*[@$!%*#?&])[A-Za-z\\d@$!%*#?&]{8,}$`
@@ -14,4 +27,5 @@ const userRegisterSchema = joi.object({
 
 module.exports = {
   userRegisterSchema,
+  userLoginSchema,
 };
