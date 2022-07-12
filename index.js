@@ -1,12 +1,16 @@
 const express = require("express");
-const { dbConnection } = require("./database/config");
+const cors = require("cors");
 require("dotenv").config();
+const { dbConnection } = require("./database/config");
 
 //Create express server
 const app = express();
 
 //Database
 dbConnection();
+
+//cors
+app.use(cors());
 
 //Public folder
 app.use(express.static("public")); //This a middleware
