@@ -1,8 +1,9 @@
 const { response } = require("express");
 const joi = require("joi");
 
-const validateSchemas = (schema) => {
-  return async (req, res = response, next) => {
+const validateSchemas =
+  (schema) =>
+  async (req, res = response, next) => {
     try {
       await schema.validateAsync(req.body);
       next();
@@ -12,8 +13,6 @@ const validateSchemas = (schema) => {
       });
     }
   };
-};
-
 module.exports = {
   validateSchemas,
 };
