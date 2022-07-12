@@ -1,8 +1,12 @@
 const express = require("express");
+const { dbConnection } = require("./database/config");
 require("dotenv").config();
 
 //Create express server
 const app = express();
+
+//Database
+dbConnection();
 
 //Public folder
 app.use(express.static("public")); //This a middleware
