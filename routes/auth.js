@@ -6,6 +6,8 @@ const { createUser, loginUser, renewToken } = require("../controllers/auth");
 const { validateSchemas } = require("../middlewares/validateSchemas");
 const { checkEmail } = require("../middlewares/checkEmail");
 const { userLoginSchema, userRegisterSchema } = require("../schemas/auth");
+const { validateJWT } = require("../middlewares/validateJWT");
+
 const router = Router();
 
 router.post("/login", validateSchemas(userLoginSchema), loginUser);
@@ -17,6 +19,6 @@ router.post(
   createUser
 );
 
-router.get("/renew", renewToken);
+router.get("/renew", validateJWT, renewToken);
 
 module.exports = router;
