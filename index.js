@@ -20,6 +20,7 @@ app.use(express.json()); //This middleware will read the body in json format
 
 //Routes
 app.use("/api/auth", require("./routes/auth"));
+app.use("/api/events", require("./routes/events"));
 
 //Listen to request
 app.listen(process.env.PORT, () =>
