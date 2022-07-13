@@ -1,7 +1,7 @@
 // User/Auth Routes
 // host + /api/auth
 
-const { Router, json } = require("express");
+const { Router } = require("express");
 const { createUser, loginUser, renewToken } = require("../controllers/auth");
 const { validateSchemas } = require("../middlewares/validateSchemas");
 const { checkEmail } = require("../middlewares/checkEmail");
