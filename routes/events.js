@@ -23,7 +23,7 @@ router.get("/", getEvents);
 router.post("/", validateSchemas(eventSchema), createEvents);
 
 //Update an event
-router.put("/:id", updateEvent);
+router.put("/:id", validateSchemas(eventSchema), updateEvent);
 
 //Delete an event
 router.delete("/:id", deleteEvent);
