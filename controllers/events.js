@@ -18,7 +18,7 @@ const getEvents = async (req, res) => {
 const createEvents = async (req, res) => {
   const event = new Event(req.body);
 
-  event.user = req.uid;
+  event.user = req.uid; //Remember this comes from the validateJWT middleware
 
   try {
     const saveEvent = await event.save();
@@ -38,7 +38,7 @@ const createEvents = async (req, res) => {
 
 const updateEvent = async (req, res) => {
   const eventId = req.params.id;
-  const userUid = req.uid;
+  const userUid = req.uid; //Remember this comes from the validateJWT middleware
 
   try {
     const event = await Event.findById(eventId);
@@ -96,7 +96,7 @@ const deleteEvent = async (req, res) => {
     if (event.user.toString() !== userUid) {
       return res.status(401).json({
         status: "Error",
-        errorMessage: "You are not authorized to update this note",
+        errorMessage: "You are not authorized to delete this note",
       });
     }
 
