@@ -9,7 +9,8 @@ const validateSchemas =
       next();
     } catch (e) {
       res.status(400).json({
-        message: e.message,
+        status: "An error occured",
+        errorMessage: e.message,
       });
     }
   };
