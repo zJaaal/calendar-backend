@@ -67,7 +67,7 @@ const renewToken = async (req, res = response) => {
 
   const token = await generateJWT(uid, name);
 
-  res.json({ status: "Complete", token });
+  res.json({ status: "Complete", token, uid, name });
 };
 
 module.exports = {
