@@ -5,7 +5,7 @@ const getEvents = async (req, res) => {
     const events = await Event.find().populate("user", "name");
     res.json({
       status: "Completed",
-      ...events,
+      events: [...events],
     });
   } catch (e) {
     console.log(e);
